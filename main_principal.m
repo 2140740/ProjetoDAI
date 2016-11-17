@@ -22,7 +22,7 @@ function varargout = main_principal(varargin)
 
 % Edit the above text to modify the response to help main_principal
 
-% Last Modified by GUIDE v2.5 17-Nov-2016 10:38:49
+% Last Modified by GUIDE v2.5 17-Nov-2016 10:55:25
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -132,5 +132,12 @@ function pushbutton8_Callback(hObject, eventdata, handles)
 % --- Executes on button press in pushbutton9.
 function pushbutton9_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton9 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in pushbutton10.
+function pushbutton10_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton10 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
