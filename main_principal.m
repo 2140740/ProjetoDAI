@@ -22,7 +22,7 @@ function varargout = main_principal(varargin)
 
 % Edit the above text to modify the response to help main_principal
 
-% Last Modified by GUIDE v2.5 17-Nov-2016 10:38:49
+% Last Modified by GUIDE v2.5 21-Nov-2016 16:41:32
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -75,6 +75,12 @@ varargout{1} = handles.output;
 
 % --- Executes on button press in button_openImage.
 function button_openImage_Callback(hObject, eventdata, handles)
+[filename,path ] = uigetfile('*.*','Abrir Imagem');
+handles.imagemOriginal = imread(strcat(path,filename));
+handles.imagemAtual=handles.imagemOriginal;
+imshow(handles.imagemAtual, 'Parent', handles.axes1);
+imshow(handles.imagemAtual, 'Parent', handles.axes2);
+guidata(hObject, handles);
 % hObject    handle to button_openImage (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
@@ -85,6 +91,8 @@ function button_saveImage_Callback(hObject, eventdata, handles)
 % hObject    handle to button_saveImage (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+[filename,path ] = uiputfile('*.jpg','Guardar Imagem');
+imwrite(handles.imagemAtual, strcat(path,filename));
 
 
 % --- Executes on button press in button_BinaryImage.
@@ -92,27 +100,40 @@ function button_BinaryImage_Callback(hObject, eventdata, handles)
 % hObject    handle to button_BinaryImage (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+handles.imagemAnterior = handles.imagemAtual;
+handles.imagemAtual = im2bw(handles.imagemAtual);
+imshow(handles.imagemAtual, 'Parent', handles.axes1);
+guidata(hObject, handles);
 
 % --- Executes on button press in button_GrayscaleImage.
 function button_GrayscaleImage_Callback(hObject, eventdata, handles)
 % hObject    handle to button_GrayscaleImage (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+handles.imagemAnterior = handles.imagemAtual;
+handles.imagemAtual = rgb2gray(handles.imagemAtual);
+imshow(handles.imagemAtual, 'Parent', handles.axes1);
+guidata(hObject, handles);
 
 % --- Executes on button press in button_negativeImage.
 function button_negativeImage_Callback(hObject, eventdata, handles)
 % hObject    handle to button_negativeImage (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+handles.imagemAnterior = handles.imagemAtual;
+handles.imagemAtual = imcomplement(handles.imagemAtual);
+imshow(handles.imagemAtual, 'Parent', handles.axes1);
+guidata(hObject, handles);
 
 % --- Executes on button press in button_previousImage.
 function button_previousImage_Callback(hObject, eventdata, handles)
 % hObject    handle to button_previousImage (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+handles.imagemAtual=handles.imagemAnterior;
+
+imshow(handles.imagemAtual, 'Parent', handles.axes1);
+guidata(hObject, handles);
 
 
 % --- Executes on button press in button_intensityImage.
@@ -122,15 +143,27 @@ function button_intensityImage_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 
-% --- Executes on button press in pushbutton8.
-function pushbutton8_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton8 (see GCBO)
+% --- Executes on button press in button_histogramImage.
+function button_histogramImage_Callback(hObject, eventdata, handles)
+% hObject    handle to button_histogramImage (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+handles.imagemAnterior = handles.imagemAtual;
+imshow(handles.imagemAtual, 'Parent', handles.axes1);
+axes(handles.axes1);
+imhist(handles.imagemAtual);
+guidata(hObject, handles);
 
 % --- Executes on button press in pushbutton9.
 function pushbutton9_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton9 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in original_Image.
+function original_Image_Callback(hObject, eventdata, handles)
+% hObject    handle to voltarOriginal (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+imshow(handles.imagemOriginal, 'Parent', handles.axes1);
