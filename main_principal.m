@@ -159,6 +159,11 @@ function pushbutton9_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton9 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+handles.imagemAnterior = handles.imagemAtual;
+imshow(handles.imagemAtual, 'Parent', handles.axes1);
+axes(handles.axes1);
+rubenHist(handles.imagemAtual);
+guidata(hObject, handles);
 
 
 % --- Executes on button press in original_Image.
