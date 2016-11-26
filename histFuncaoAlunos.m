@@ -1,4 +1,4 @@
-function  []= ruben_hist(img)
+function  [cores]= histFuncaoAlunos(img)
 
 %se a imagem tiver duas dimensoes, grayscale faz o código abaixo , senão
 %dispara no else lá em baixo
@@ -19,11 +19,14 @@ num=img(i,j)+1;
    end
 end
 
+%resultado = cores(num);
+
 %mostra o gráfico
+%{
 figure
 bar(cores);
 axis([0 255 0 max(cores)+1]);
-
+%}
 %caso nao esteja em grayscale
 else
     disp('A imagem não está em grayscale');

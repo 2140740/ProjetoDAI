@@ -22,7 +22,7 @@ function varargout = main_principal(varargin)
 
 % Edit the above text to modify the response to help main_principal
 
-% Last Modified by GUIDE v2.5 21-Nov-2016 16:41:32
+% Last Modified by GUIDE v2.5 26-Nov-2016 22:38:54
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -154,15 +154,18 @@ axes(handles.axes1);
 imhist(handles.imagemAtual);
 guidata(hObject, handles);
 
-% --- Executes on button press in pushbutton9.
-function pushbutton9_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton9 (see GCBO)
+% --- Executes on button press in pushbutton_HistogramaFuncaoAlunos.
+function pushbutton_HistogramaFuncaoAlunos_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton_HistogramaFuncaoAlunos (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 handles.imagemAnterior = handles.imagemAtual;
-imshow(handles.imagemAtual, 'Parent', handles.axes1);
+imshow(handles.imagemAtual, 'Parent', handles.axes2);
+histograma=histFuncaoAlunos(handles.imagemAtual);
 axes(handles.axes1);
-rubenHist(handles.imagemAtual);
+bar(histograma);
+axis([0 255 0 max(histograma)+1]);
+
 guidata(hObject, handles);
 
 
@@ -172,3 +175,4 @@ function original_Image_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 imshow(handles.imagemOriginal, 'Parent', handles.axes1);
+imshow(handles.imagemOriginal, 'Parent', handles.axes2);
