@@ -1,0 +1,13 @@
+Nome do curso: Informática para a Saúde
+Nome da Unidade Curricular: Desenvolvimento de Aplicações de Imagiologia
+Ano:3
+Semestre: 1
+
+Elementos do grupo:
+Nº de aluno: 2120649
+Nome: André dos Santos Costa
+E-mail: 2120649@my.ipleiria.pt
+
+Nº de aluno: 2111306
+Nome: Ricardo Jorge Sousa Santos
+E-mail: 2111306@my.ipleiria.pt
