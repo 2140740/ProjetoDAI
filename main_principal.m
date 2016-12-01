@@ -93,6 +93,7 @@ function button_saveImage_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 [filename,path ] = uiputfile('*.jpg','Guardar Imagem');
 imwrite(handles.imagemAtual, strcat(path,filename));
+guidata(hObject, handles);
 
 
 % --- Executes on button press in button_BinaryImage.
@@ -110,10 +111,17 @@ function button_GrayscaleImage_Callback(hObject, eventdata, handles)
 % hObject    handle to button_GrayscaleImage (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-handles.imagemAnterior = handles.imagemAtual;
-handles.imagemAtual = rgb2gray(handles.imagemAtual);
-imshow(handles.imagemAtual, 'Parent', handles.axes1);
+if(ndims(handles.imagemAtual)==3)
+    handles.imagemAnterior = handles.imagemAtual;
+    handles.imagemAtual = rgb2gray(handles.imagemAtual);
+    imshow(handles.imagemAtual, 'Parent', handles.axes1);
+
+    elseif(ndims(handles.imagemAtual)<3)
+         msgbox('Não é possivel transformar a imagem em grayscale', 'Error','error');
+end
 guidata(hObject, handles);
+
+
 
 % --- Executes on button press in button_negativeImage.
 function button_negativeImage_Callback(hObject, eventdata, handles)
@@ -124,17 +132,6 @@ handles.imagemAnterior = handles.imagemAtual;
 handles.imagemAtual = imcomplement(handles.imagemAtual);
 imshow(handles.imagemAtual, 'Parent', handles.axes1);
 guidata(hObject, handles);
-
-% --- Executes on button press in button_previousImage.
-function button_previousImage_Callback(hObject, eventdata, handles)
-% hObject    handle to button_previousImage (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-handles.imagemAtual=handles.imagemAnterior;
-
-imshow(handles.imagemAtual, 'Parent', handles.axes1);
-guidata(hObject, handles);
-
 
 % --- Executes on button press in button_intensityImage.
 function button_intensityImage_Callback(hObject, eventdata, handles)
@@ -168,6 +165,14 @@ axis([0 255 0 max(histograma)+1]);
 
 guidata(hObject, handles);
 
+% --- Executes on button press in button_previousImage.
+function button_previousImage_Callback(hObject, eventdata, handles)
+% hObject    handle to button_previousImage (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+handles.imagemAtual=handles.imagemAnterior;
+imshow(handles.imagemAtual, 'Parent', handles.axes1);
+guidata(hObject, handles);
 
 % --- Executes on button press in original_Image.
 function original_Image_Callback(hObject, eventdata, handles)
@@ -175,4 +180,5 @@ function original_Image_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 imshow(handles.imagemOriginal, 'Parent', handles.axes1);
-imshow(handles.imagemOriginal, 'Parent', handles.axes2);
+handles.imagemAtual=handles.imagemOriginal;
+guidata(hObject, handles);
