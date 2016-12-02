@@ -22,7 +22,7 @@ function varargout = main_principal(varargin)
 
 % Edit the above text to modify the response to help main_principal
 
-% Last Modified by GUIDE v2.5 02-Dec-2016 15:42:26
+% Last Modified by GUIDE v2.5 02-Dec-2016 16:19:24
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -255,3 +255,23 @@ function checkbox1_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of checkbox1
+
+
+% --------------------------------------------------------------------
+function cPixeis_Callback(hObject, eventdata, handles)
+% hObject    handle to cPixeis (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+if (size (handles.imagemAtual,3)==3)
+    set(handles.painelPixeisRgb, 'Visible', 'On');
+    % Update handles structure
+    guidata(hObject, handles);
+elseif (size (handles.imagemAtual,3)==1)
+    set(handles.painelPixeisGray, 'Visible', 'On');
+    % Update handles structure
+    guidata(hObject, handles);
+end
+end
+
+
+
