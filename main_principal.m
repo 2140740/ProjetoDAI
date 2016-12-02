@@ -22,7 +22,7 @@ function varargout = main_principal(varargin)
 
 % Edit the above text to modify the response to help main_principal
 
-% Last Modified by GUIDE v2.5 02-Dec-2016 16:19:24
+% Last Modified by GUIDE v2.5 02-Dec-2016 17:52:48
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -55,7 +55,16 @@ function main_principal_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for main_principal
 handles.output = hObject;
 
+
+set(handles.painelEscala, 'Visible', 'Off');
+set(handles.painelAngulo, 'Visible', 'Off');
+set(handles.operacoes, 'Visible', 'Off');
+set(handles.axes1, 'Visible', 'Off');
+set(handles.axes2, 'Visible', 'Off');
+set(handles.button_previousImage, 'Visible', 'Off');
+set(handles.original_Image, 'Visible', 'Off');
 set(handles.painelThreshold, 'Visible', 'Off');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
 % Update handles structure
 guidata(hObject, handles);
 % UIWAIT makes main_principal wait for user response (see UIRESUME)
@@ -91,6 +100,7 @@ handles.imagemAtual=handles.imagemOriginal;
 guidata(hObject, handles);
 
 
+
 % --------------------------------------------------------------------
 function Ficheiro_Callback(hObject, eventdata, handles)
 % hObject    handle to Ficheiro (see GCBO)
@@ -124,6 +134,12 @@ function abrir_Callback(hObject, eventdata, handles)
 % hObject    handle to abrir (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+set(handles.operacoes, 'Visible', 'On');
+set(handles.axes1, 'Visible', 'On');
+set(handles.axes2, 'Visible', 'On');
+set(handles.button_previousImage, 'Visible', 'On');
+set(handles.original_Image, 'Visible', 'On');
+
 [filename,path ] = uigetfile('*.*','Abrir Imagem');
 handles.imagemOriginal = imread(strcat(path,filename));
 handles.imagemAtual=handles.imagemOriginal;
@@ -148,6 +164,10 @@ function grayscale_Callback(hObject, eventdata, handles)
 % hObject    handle to grayscale (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+set(handles.painelEscala, 'Visible', 'Off');
+set(handles.painelAngulo, 'Visible', 'Off');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.painelThreshold, 'Visible', 'Off');
 if(ndims(handles.imagemAtual)==3)
     handles.imagemAnterior = handles.imagemAtual;
     handles.imagemAtual = rgb2gray(handles.imagemAtual);
@@ -164,7 +184,10 @@ function binario_Callback(hObject, eventdata, handles)
 % hObject    handle to binario (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+set(handles.painelEscala, 'Visible', 'Off');
 set(handles.painelThreshold, 'Visible', 'On');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.painelAngulo, 'Visible', 'Off');
 
 
 
@@ -173,6 +196,10 @@ function negativo_Callback(hObject, eventdata, handles)
 % hObject    handle to negativo (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+set(handles.painelEscala, 'Visible', 'Off');
+set(handles.painelAngulo, 'Visible', 'Off');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.painelThreshold, 'Visible', 'Off');
 handles.imagemAnterior = handles.imagemAtual;
 handles.imagemAtual = imcomplement(handles.imagemAtual);
 imshow(handles.imagemAtual, 'Parent', handles.axes1);
@@ -191,6 +218,10 @@ function histoMathlab_Callback(hObject, eventdata, handles)
 % hObject    handle to histoMathlab (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+set(handles.painelEscala, 'Visible', 'Off');
+set(handles.painelAngulo, 'Visible', 'Off');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.painelThreshold, 'Visible', 'Off');
 handles.imagemAnterior = handles.imagemAtual;
 imshow(handles.imagemAtual, 'Parent', handles.axes1);
 axes(handles.axes1);
@@ -203,6 +234,10 @@ function histoAlunos_Callback(hObject, eventdata, handles)
 % hObject    handle to histoAlunos (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+set(handles.painelEscala, 'Visible', 'Off');
+set(handles.painelAngulo, 'Visible', 'Off');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.painelThreshold, 'Visible', 'Off');
 handles.imagemAnterior = handles.imagemAtual;
 imshow(handles.imagemAtual, 'Parent', handles.axes2);
 histograma=histFuncaoAlunos(handles.imagemAtual);
@@ -253,25 +288,197 @@ function checkbox1_Callback(hObject, eventdata, handles)
 % hObject    handle to checkbox1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
 % Hint: get(hObject,'Value') returns toggle state of checkbox1
+% --------------------------------------------------------------------
+
+
+
+
 
 
 % --------------------------------------------------------------------
-function cPixeis_Callback(hObject, eventdata, handles)
-% hObject    handle to cPixeis (see GCBO)
+function intensidadeCor_Callback(hObject, eventdata, handles)
+% hObject    handle to intensidadeCor (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-if (size (handles.imagemAtual,3)==3)
-    set(handles.painelPixeisRgb, 'Visible', 'On');
-    % Update handles structure
-    guidata(hObject, handles);
-elseif (size (handles.imagemAtual,3)==1)
-    set(handles.painelPixeisGray, 'Visible', 'On');
-    % Update handles structure
-    guidata(hObject, handles);
-end
+set(handles.painelEscala, 'Visible', 'Off');
+set(handles.painelAngulo, 'Visible', 'Off');
+set(handles.painelIntensidadeCor, 'Visible', 'On');
+% Update handles structure
+guidata(hObject, handles);
+
+% --- Executes on slider movement.
+function sliderIntensidadeCor_Callback(hObject, eventdata, handles)
+% hObject    handle to sliderIntensidadeCor (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'Value') returns position of slider
+%        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
+handles.imagemAnterior=handles.imagemAtual;
+valorIntensidade=get(handles.sliderIntensidadeCor,'Value');
+assignin('base','valorSlider', valorIntensidade);
+handles.imagemItensificada=handles.imagemAtual*valorIntensidade;
+imshow(handles.imagemItensificada, 'Parent', handles.axes1);
+% Update handles structure
+guidata(hObject, handles);
+
+
+% --- Executes during object creation, after setting all properties.
+function sliderIntensidadeCor_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to sliderIntensidadeCor (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: slider controls usually have a light gray background.
+if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor',[.9 .9 .9]);
 end
 
 
+% --------------------------------------------------------------------
+function transfGeo_Callback(hObject, eventdata, handles)
+% hObject    handle to transfGeo (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function rotacao_Callback(hObject, eventdata, handles)
+% hObject    handle to rotacao (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+set(handles.painelEscala, 'Visible', 'Off');
+set(handles.painelAngulo, 'Visible', 'On');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+guidata(hObject, handles);
+
+
+
+% --------------------------------------------------------------------
+function translacao_Callback(hObject, eventdata, handles)
+% hObject    handle to translacao (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function mudaEscala_Callback(hObject, eventdata, handles)
+% hObject    handle to mudaEscala (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+set(handles.painelEscala, 'Visible', 'On');
+set(handles.painelAngulo, 'Visible', 'Off');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+guidata(hObject, handles);
+
+
+
+function editAngulo_Callback(hObject, eventdata, handles)
+% hObject    handle to editAngulo (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of editAngulo as text
+%        str2double(get(hObject,'String')) returns contents of editAngulo as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function editAngulo_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to editAngulo (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in buttonRotacao.
+function buttonRotacao_Callback(hObject, eventdata, handles)
+% hObject    handle to buttonRotacao (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+set(handles.painelAngulo, 'Visible', 'On');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+handles.imagemAnterior=handles.imagemAtual;
+
+handles.anguloInserido=0;
+handles.anguloInserido=get(handles.editAngulo, 'String');
+handles.anguloInserido=str2num(handles.anguloInserido);
+handles.imagemAtual=imrotate(handles.imagemAtual, handles.anguloInserido, 'nearest');
+imshow(handles.imagemAtual, 'Parent', handles.axes1);
+
+set(handles.editAngulo,'String','');
+
+% Update handles structure
+guidata(hObject, handles);
+
+
+% --- Executes during object creation, after setting all properties.
+function painelEscala_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to painelEscala (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+
+
+function editLargura_Callback(hObject, eventdata, handles)
+% hObject    handle to editLargura (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of editLargura as text
+%        str2double(get(hObject,'String')) returns contents of editLargura as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function editLargura_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to editLargura (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function editAltura_Callback(hObject, eventdata, handles)
+% hObject    handle to editAltura (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of editAltura as text
+%        str2double(get(hObject,'String')) returns contents of editAltura as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function editAltura_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to editAltura (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+
+
+% --- Executes on button press in botaoEscala.
+function botaoEscala_Callback(hObject, eventdata, handles)
+% hObject    handle to botaoEscala (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Update handles structure
+guidata(hObject, handles);
 
