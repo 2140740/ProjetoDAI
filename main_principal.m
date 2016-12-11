@@ -22,7 +22,7 @@ function varargout = main_principal(varargin)
 
 % Edit the above text to modify the response to help main_principal
 
-% Last Modified by GUIDE v2.5 02-Dec-2016 17:52:48
+% Last Modified by GUIDE v2.5 11-Dec-2016 18:48:30
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -480,5 +480,23 @@ function botaoEscala_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Update handles structure
+guidata(hObject, handles);
+
+
+
+% --------------------------------------------------------------------
+function equalizacaoHisto_Callback(hObject, eventdata, handles)
+% hObject    handle to equalizacaoHisto (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+if(ndims(handles.imagemAtual)==2)
+        handles.imagemAnterior = handles.imagemAtual;
+        HIST=adapthisteq(handles.imagemAtual);
+        axes(handles.axes2);
+        imhist(HIST);
+        imshow(HIST, 'Parent', handles.axes1);
+    elseif(ndims(handles.imagemAtual)==3)
+         msgbox('Não é possivel efetuar esta acção pois a iamgem não se encontra em Grayscale', 'Error','error');
+end
 guidata(hObject, handles);
 
