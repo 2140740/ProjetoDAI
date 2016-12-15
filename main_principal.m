@@ -22,7 +22,7 @@ function varargout = main_principal(varargin)
 
 % Edit the above text to modify the response to help main_principal
 
-% Last Modified by GUIDE v2.5 11-Dec-2016 18:48:30
+% Last Modified by GUIDE v2.5 15-Dec-2016 14:22:37
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -65,6 +65,8 @@ set(handles.button_previousImage, 'Visible', 'Off');
 set(handles.original_Image, 'Visible', 'Off');
 set(handles.painelThreshold, 'Visible', 'Off');
 set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.panellimitesmatlab, 'Visible', 'Off');
+
 % Update handles structure
 guidata(hObject, handles);
 % UIWAIT makes main_principal wait for user response (see UIRESUME)
@@ -500,3 +502,67 @@ if(ndims(handles.imagemAtual)==2)
 end
 guidata(hObject, handles);
 
+
+
+% --------------------------------------------------------------------
+function limites_Callback(hObject, eventdata, handles)
+% hObject    handle to limites (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function limitefuncaomatlab_Callback(hObject, eventdata, handles)
+% hObject    handle to limitefuncaomatlab (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+set(handles.panellimitesmatlab, 'Visible', 'On');
+
+% --------------------------------------------------------------------
+function limitefuncaoalunos_Callback(hObject, eventdata, handles)
+% hObject    handle to limitefuncaoalunos (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in aplicarfuncaoMatlab.
+function aplicarfuncaoMatlab_Callback(hObject, eventdata, handles)
+% hObject    handle to aplicarfuncaoMatlab (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+handles.imagemAnterior = handles.imagemAtual;
+handles.imagemAtual = rgb2gray(handles.imagemAtual);
+    
+radio1 = get(handles.radiobuttonSobel,'Value');
+radio2 = get(handles.radiobuttonPrewitt,'Value');
+radio3 = get(handles.radiobuttonRoberts,'Value');
+radio4 = get(handles.radiobuttonCanny,'Value');
+
+ if(radio1==1)
+ handles.BW2 = edge(handles.imagemAtual,'Sobel');
+ else if(radio2==1)
+     handles.BW2 = edge(handles.imagemAtual,'Prewitt');
+     else if(radio3 ==1)
+          handles.BW2 = edge(handles.imagemAtual,'Roberts');
+         else if(radio4 ==1)
+                 handles.BW2=edge(handles.imagemAtual,'Canny');
+             end
+          end
+     end
+ end
+
+%multiplicar a imagem por 255
+%para podermos ver os contornos
+%g é o numero de dimensoes
+[r,c,g] = size(handles.imagemAtual);
+%// Arrange the binary images to form a RGB color image.
+handles.FinalIm = zeros(r,c,3,'uint8');
+
+handles.FinalIm(:,:,1) = 255*handles.BW2;
+handles.FinalIm(:,:,2) = 255*handles.BW2;
+handles.FinalIm(:,:,3) = 255*handles.BW2;
+
+handles.Z = imadd(handles.FinalIm,handles.imagemOriginal);
+imshow(handles.Z/1.75, 'Parent', handles.axes1);
+
+guidata(hObject, handles);
