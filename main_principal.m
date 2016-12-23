@@ -22,7 +22,7 @@ function varargout = main_principal(varargin)
 
 % Edit the above text to modify the response to help main_principal
 
-% Last Modified by GUIDE v2.5 22-Dec-2016 12:08:39
+% Last Modified by GUIDE v2.5 15-Dec-2016 14:22:37
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -66,7 +66,6 @@ set(handles.original_Image, 'Visible', 'Off');
 set(handles.painelThreshold, 'Visible', 'Off');
 set(handles.painelIntensidadeCor, 'Visible', 'Off');
 set(handles.panellimitesmatlab, 'Visible', 'Off');
-set(handles.panellimitesalunos, 'Visible', 'Off');
 
 % Update handles structure
 guidata(hObject, handles);
@@ -171,8 +170,6 @@ set(handles.painelEscala, 'Visible', 'Off');
 set(handles.painelAngulo, 'Visible', 'Off');
 set(handles.painelIntensidadeCor, 'Visible', 'Off');
 set(handles.painelThreshold, 'Visible', 'Off');
-set(handles.panellimitesmatlab, 'Visible', 'Off');
-set(handles.panellimitesalunos, 'Visible', 'Off');
 if(ndims(handles.imagemAtual)==3)
     handles.imagemAnterior = handles.imagemAtual;
     handles.imagemAtual = rgb2gray(handles.imagemAtual);
@@ -193,8 +190,7 @@ set(handles.painelEscala, 'Visible', 'Off');
 set(handles.painelThreshold, 'Visible', 'On');
 set(handles.painelIntensidadeCor, 'Visible', 'Off');
 set(handles.painelAngulo, 'Visible', 'Off');
-set(handles.panellimitesmatlab, 'Visible', 'Off');
-set(handles.panellimitesalunos, 'Visible', 'Off');
+
 
 
 % --------------------------------------------------------------------
@@ -206,8 +202,6 @@ set(handles.painelEscala, 'Visible', 'Off');
 set(handles.painelAngulo, 'Visible', 'Off');
 set(handles.painelIntensidadeCor, 'Visible', 'Off');
 set(handles.painelThreshold, 'Visible', 'Off');
-set(handles.panellimitesmatlab, 'Visible', 'Off');
-set(handles.panellimitesalunos, 'Visible', 'Off');
 handles.imagemAnterior = handles.imagemAtual;
 handles.imagemAtual = imcomplement(handles.imagemAtual);
 imshow(handles.imagemAtual, 'Parent', handles.axes1);
@@ -230,8 +224,6 @@ set(handles.painelEscala, 'Visible', 'Off');
 set(handles.painelAngulo, 'Visible', 'Off');
 set(handles.painelIntensidadeCor, 'Visible', 'Off');
 set(handles.painelThreshold, 'Visible', 'Off');
-set(handles.panellimitesmatlab, 'Visible', 'Off');
-set(handles.panellimitesalunos, 'Visible', 'Off');
 handles.imagemAnterior = handles.imagemAtual;
 imshow(handles.imagemAtual, 'Parent', handles.axes1);
 axes(handles.axes1);
@@ -248,8 +240,6 @@ set(handles.painelEscala, 'Visible', 'Off');
 set(handles.painelAngulo, 'Visible', 'Off');
 set(handles.painelIntensidadeCor, 'Visible', 'Off');
 set(handles.painelThreshold, 'Visible', 'Off');
-set(handles.panellimitesmatlab, 'Visible', 'Off');
-set(handles.panellimitesalunos, 'Visible', 'Off');
 handles.imagemAnterior = handles.imagemAtual;
 imshow(handles.imagemAtual, 'Parent', handles.axes2);
 histograma=histFuncaoAlunos(handles.imagemAtual);
@@ -315,8 +305,6 @@ function intensidadeCor_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 set(handles.painelEscala, 'Visible', 'Off');
 set(handles.painelAngulo, 'Visible', 'Off');
-set(handles.panellimitesmatlab, 'Visible', 'Off');
-set(handles.panellimitesalunos, 'Visible', 'Off');
 set(handles.painelIntensidadeCor, 'Visible', 'On');
 % Update handles structure
 guidata(hObject, handles);
@@ -362,11 +350,9 @@ function rotacao_Callback(hObject, eventdata, handles)
 % hObject    handle to rotacao (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-set(handles.panellimitesmatlab, 'Visible', 'Off');
 set(handles.painelEscala, 'Visible', 'Off');
 set(handles.painelAngulo, 'Visible', 'On');
 set(handles.painelIntensidadeCor, 'Visible', 'Off');
-set(handles.panellimitesalunos, 'Visible', 'Off');
 guidata(hObject, handles);
 
 
@@ -386,8 +372,6 @@ function mudaEscala_Callback(hObject, eventdata, handles)
 set(handles.painelEscala, 'Visible', 'On');
 set(handles.painelAngulo, 'Visible', 'Off');
 set(handles.painelIntensidadeCor, 'Visible', 'Off');
-set(handles.panellimitesmatlab, 'Visible', 'Off');
-set(handles.panellimitesalunos, 'Visible', 'Off');
 guidata(hObject, handles);
 
 
@@ -421,8 +405,6 @@ function buttonRotacao_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 set(handles.painelAngulo, 'Visible', 'On');
 set(handles.painelIntensidadeCor, 'Visible', 'Off');
-set(handles.panellimitesmatlab, 'Visible', 'Off');
-set(handles.panellimitesalunos, 'Visible', 'Off');
 handles.imagemAnterior=handles.imagemAtual;
 
 handles.anguloInserido=0;
@@ -534,12 +516,6 @@ function limitefuncaomatlab_Callback(hObject, eventdata, handles)
 % hObject    handle to limitefuncaomatlab (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-set(handles.painelEscala, 'Visible', 'Off');
-set(handles.painelAngulo, 'Visible', 'Off');
-set(handles.painelIntensidadeCor, 'Visible', 'Off');
-set(handles.painelThreshold, 'Visible', 'Off');
-set(handles.panellimitesmatlab, 'Visible', 'Off');
-set(handles.panellimitesalunos, 'Visible', 'Off');
 set(handles.panellimitesmatlab, 'Visible', 'On');
 
 % --------------------------------------------------------------------
@@ -547,12 +523,6 @@ function limitefuncaoalunos_Callback(hObject, eventdata, handles)
 % hObject    handle to limitefuncaoalunos (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-set(handles.painelEscala, 'Visible', 'Off');
-set(handles.painelAngulo, 'Visible', 'Off');
-set(handles.painelIntensidadeCor, 'Visible', 'Off');
-set(handles.painelThreshold, 'Visible', 'Off');
-set(handles.panellimitesmatlab, 'Visible', 'Off');
-set(handles.panellimitesalunos, 'Visible', 'On');
 
 
 % --- Executes on button press in aplicarfuncaoMatlab.
@@ -562,58 +532,37 @@ function aplicarfuncaoMatlab_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 handles.imagemAnterior = handles.imagemAtual;
 handles.imagemAtual = rgb2gray(handles.imagemAtual);
-
+    
 radio1 = get(handles.radiobuttonSobel,'Value');
 radio2 = get(handles.radiobuttonPrewitt,'Value');
 radio3 = get(handles.radiobuttonRoberts,'Value');
 radio4 = get(handles.radiobuttonCanny,'Value');
 
-    if(radio1==1)
-        handles.BW2 = edge(handles.imagemAtual,'Sobel');
-    else if(radio2==1)
-        handles.BW2 = edge(handles.imagemAtual,'Prewitt');
-    else if(radio3 ==1)
-        handles.BW2 = edge(handles.imagemAtual,'Roberts');
-    else if(radio4 ==1)
+ if(radio1==1)
+ handles.BW2 = edge(handles.imagemAtual,'Sobel');
+ else if(radio2==1)
+     handles.BW2 = edge(handles.imagemAtual,'Prewitt');
+     else if(radio3 ==1)
+          handles.BW2 = edge(handles.imagemAtual,'Roberts');
+         else if(radio4 ==1)
                  handles.BW2=edge(handles.imagemAtual,'Canny');
              end
           end
      end
-    end
- 
-imshow(handles.BW2/1.75, 'Parent', handles.axes1);
+ end
 
-guidata(hObject, handles);
+%multiplicar a imagem por 255
+%para podermos ver os contornos
+%g é o numero de dimensoes
+[r,c,g] = size(handles.imagemAtual);
+%// Arrange the binary images to form a RGB color image.
+handles.FinalIm = zeros(r,c,3,'uint8');
 
-% --- Executes on button press in aplicarfuncaoAlunos.
-function aplicarfuncaoAlunos_Callback(hObject, eventdata, handles)
-% hObject    handle to aplicarfuncaoAlunos (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+handles.FinalIm(:,:,1) = 255*handles.BW2;
+handles.FinalIm(:,:,2) = 255*handles.BW2;
+handles.FinalIm(:,:,3) = 255*handles.BW2;
 
-radioSobel = get(handles.radiobuttonSobelAlunos,'Value');
-radioPrewitt = get(handles.radiobuttonPrewittAlunos,'Value');
-radioRoberts = get(handles.radiobuttonRobertsAlunos,'Value');;
-radioCanny = get(handles.radiobuttonCannyAlunos,'Value');
-
-    if(radioSobel==1)
-        radio = 'radioSobel';
-        LimitesFuncaoAlunos(handles.imagemAtual,radio);
-        
-    else if(radioPrewitt==1)
-        radio = 'radioPrewitt';
-        LimitesFuncaoAlunos(handles.imagemAtual,radio);
-        
-    else if(radioRoberts ==1)
-        radio = 'radioRoberts';
-        LimitesFuncaoAlunos(handles.imagemAtual,radio);
-        
-    else if(radioCanny==1)
-            radio = 'radioCanny';
-            LimitesFuncaoAlunos(handles.imagemAtual,radio);
-            end
-        end
-    end
-end
+handles.Z = imadd(handles.FinalIm,handles.imagemOriginal);
+imshow(handles.Z/1.75, 'Parent', handles.axes1);
 
 guidata(hObject, handles);
