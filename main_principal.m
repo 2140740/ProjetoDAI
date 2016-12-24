@@ -22,7 +22,7 @@ function varargout = main_principal(varargin)
 
 % Edit the above text to modify the response to help main_principal
 
-% Last Modified by GUIDE v2.5 15-Dec-2016 14:22:37
+% Last Modified by GUIDE v2.5 24-Dec-2016 12:11:06
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -66,7 +66,14 @@ set(handles.original_Image, 'Visible', 'Off');
 set(handles.painelThreshold, 'Visible', 'Off');
 set(handles.painelIntensidadeCor, 'Visible', 'Off');
 set(handles.panellimitesmatlab, 'Visible', 'Off');
+set(handles.mascaramodeaveragemedian, 'Visible', 'Off');
+set(handles.paineltranslacao, 'Visible', 'Off');
+set(handles.text9, 'Visible', 'Off');
+set(handles.axes3, 'Visible', 'Off');
+set(handles.painelIntensidade, 'Visible', 'Off');
 
+handles.translacaoY = 0;
+handles.translacaoX = 0;
 % Update handles structure
 guidata(hObject, handles);
 % UIWAIT makes main_principal wait for user response (see UIRESUME)
@@ -168,8 +175,15 @@ function grayscale_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 set(handles.painelEscala, 'Visible', 'Off');
 set(handles.painelAngulo, 'Visible', 'Off');
-set(handles.painelIntensidadeCor, 'Visible', 'Off');
 set(handles.painelThreshold, 'Visible', 'Off');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.panellimitesmatlab, 'Visible', 'Off');
+set(handles.mascaramodeaveragemedian, 'Visible', 'Off');
+set(handles.paineltranslacao, 'Visible', 'Off');
+set(handles.text9, 'Visible', 'Off');
+set(handles.axes3, 'Visible', 'Off');
+set(handles.painelIntensidade, 'Visible', 'Off');
+
 if(ndims(handles.imagemAtual)==3)
     handles.imagemAnterior = handles.imagemAtual;
     handles.imagemAtual = rgb2gray(handles.imagemAtual);
@@ -187,11 +201,19 @@ function binario_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 set(handles.painelEscala, 'Visible', 'Off');
-set(handles.painelThreshold, 'Visible', 'On');
-set(handles.painelIntensidadeCor, 'Visible', 'Off');
 set(handles.painelAngulo, 'Visible', 'Off');
+set(handles.painelThreshold, 'Visible', 'Off');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.panellimitesmatlab, 'Visible', 'Off');
+set(handles.mascaramodeaveragemedian, 'Visible', 'Off');
+set(handles.paineltranslacao, 'Visible', 'Off');
+set(handles.text9, 'Visible', 'Off');
+set(handles.axes3, 'Visible', 'Off');
+set(handles.painelIntensidade, 'Visible', 'Off');
 
+set(handles.painelThreshold, 'Visible', 'On');
 
+guidata(hObject, handles);
 
 % --------------------------------------------------------------------
 function negativo_Callback(hObject, eventdata, handles)
@@ -200,8 +222,15 @@ function negativo_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 set(handles.painelEscala, 'Visible', 'Off');
 set(handles.painelAngulo, 'Visible', 'Off');
-set(handles.painelIntensidadeCor, 'Visible', 'Off');
 set(handles.painelThreshold, 'Visible', 'Off');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.panellimitesmatlab, 'Visible', 'Off');
+set(handles.mascaramodeaveragemedian, 'Visible', 'Off');
+set(handles.paineltranslacao, 'Visible', 'Off');
+set(handles.text9, 'Visible', 'Off');
+set(handles.axes3, 'Visible', 'Off');
+set(handles.painelIntensidade, 'Visible', 'Off');
+
 handles.imagemAnterior = handles.imagemAtual;
 handles.imagemAtual = imcomplement(handles.imagemAtual);
 imshow(handles.imagemAtual, 'Parent', handles.axes1);
@@ -222,8 +251,15 @@ function histoMathlab_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 set(handles.painelEscala, 'Visible', 'Off');
 set(handles.painelAngulo, 'Visible', 'Off');
-set(handles.painelIntensidadeCor, 'Visible', 'Off');
 set(handles.painelThreshold, 'Visible', 'Off');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.panellimitesmatlab, 'Visible', 'Off');
+set(handles.mascaramodeaveragemedian, 'Visible', 'Off');
+set(handles.paineltranslacao, 'Visible', 'Off');
+set(handles.text9, 'Visible', 'Off');
+set(handles.axes3, 'Visible', 'Off');
+set(handles.painelIntensidade, 'Visible', 'Off');
+
 handles.imagemAnterior = handles.imagemAtual;
 imshow(handles.imagemAtual, 'Parent', handles.axes1);
 axes(handles.axes1);
@@ -238,8 +274,15 @@ function histoAlunos_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 set(handles.painelEscala, 'Visible', 'Off');
 set(handles.painelAngulo, 'Visible', 'Off');
-set(handles.painelIntensidadeCor, 'Visible', 'Off');
 set(handles.painelThreshold, 'Visible', 'Off');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.panellimitesmatlab, 'Visible', 'Off');
+set(handles.mascaramodeaveragemedian, 'Visible', 'Off');
+set(handles.paineltranslacao, 'Visible', 'Off');
+set(handles.text9, 'Visible', 'Off');
+set(handles.axes3, 'Visible', 'Off');
+set(handles.painelIntensidade, 'Visible', 'Off');
+
 handles.imagemAnterior = handles.imagemAtual;
 imshow(handles.imagemAtual, 'Parent', handles.axes2);
 histograma=histFuncaoAlunos(handles.imagemAtual);
@@ -295,8 +338,15 @@ function checkbox1_Callback(hObject, eventdata, handles)
 
 
 
+% --------------------------------------------------------------------
+function cPixeis_Callback(hObject, eventdata, handles)
+% hObject    handle to cPixeis (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
 
-
+handles.imagemAnterior = handles.imagemAtual;
+conta_pixeis(handles.imagemAtual);
+guidata(hObject, handles);
 
 % --------------------------------------------------------------------
 function intensidadeCor_Callback(hObject, eventdata, handles)
@@ -305,7 +355,16 @@ function intensidadeCor_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 set(handles.painelEscala, 'Visible', 'Off');
 set(handles.painelAngulo, 'Visible', 'Off');
+set(handles.painelThreshold, 'Visible', 'Off');
+set(handles.panellimitesmatlab, 'Visible', 'Off');
+set(handles.mascaramodeaveragemedian, 'Visible', 'Off');
+set(handles.paineltranslacao, 'Visible', 'Off');
+set(handles.text9, 'Visible', 'Off');
+set(handles.axes3, 'Visible', 'Off');
+set(handles.painelIntensidade, 'Visible', 'Off');
+
 set(handles.painelIntensidadeCor, 'Visible', 'On');
+
 % Update handles structure
 guidata(hObject, handles);
 
@@ -336,6 +395,7 @@ function sliderIntensidadeCor_CreateFcn(hObject, eventdata, handles)
 if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor',[.9 .9 .9]);
 end
+guidata(hObject, handles);
 
 
 % --------------------------------------------------------------------
@@ -351,8 +411,17 @@ function rotacao_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 set(handles.painelEscala, 'Visible', 'Off');
-set(handles.painelAngulo, 'Visible', 'On');
+set(handles.painelThreshold, 'Visible', 'Off');
 set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.panellimitesmatlab, 'Visible', 'Off');
+set(handles.mascaramodeaveragemedian, 'Visible', 'Off');
+set(handles.paineltranslacao, 'Visible', 'Off');
+set(handles.text9, 'Visible', 'Off');
+set(handles.axes3, 'Visible', 'Off');
+set(handles.painelIntensidade, 'Visible', 'Off');
+
+set(handles.painelAngulo, 'Visible', 'On');
+
 guidata(hObject, handles);
 
 
@@ -362,6 +431,18 @@ function translacao_Callback(hObject, eventdata, handles)
 % hObject    handle to translacao (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+set(handles.painelEscala, 'Visible', 'Off');
+set(handles.painelAngulo, 'Visible', 'Off');
+set(handles.painelThreshold, 'Visible', 'Off');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.panellimitesmatlab, 'Visible', 'Off');
+set(handles.mascaramodeaveragemedian, 'Visible', 'Off');
+set(handles.text9, 'Visible', 'Off');
+set(handles.axes3, 'Visible', 'Off');
+set(handles.painelIntensidade, 'Visible', 'Off');
+
+set(handles.paineltranslacao, 'Visible', 'On');
+
 
 
 % --------------------------------------------------------------------
@@ -369,9 +450,19 @@ function mudaEscala_Callback(hObject, eventdata, handles)
 % hObject    handle to mudaEscala (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-set(handles.painelEscala, 'Visible', 'On');
+
 set(handles.painelAngulo, 'Visible', 'Off');
+set(handles.painelThreshold, 'Visible', 'Off');
 set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.panellimitesmatlab, 'Visible', 'Off');
+set(handles.mascaramodeaveragemedian, 'Visible', 'Off');
+set(handles.paineltranslacao, 'Visible', 'Off');
+set(handles.text9, 'Visible', 'Off');
+set(handles.axes3, 'Visible', 'Off');
+set(handles.painelIntensidade, 'Visible', 'Off');
+
+set(handles.painelEscala, 'Visible', 'On');
+
 guidata(hObject, handles);
 
 
@@ -396,6 +487,7 @@ function editAngulo_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+guidata(hObject, handles);
 
 
 % --- Executes on button press in buttonRotacao.
@@ -403,8 +495,18 @@ function buttonRotacao_Callback(hObject, eventdata, handles)
 % hObject    handle to buttonRotacao (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-set(handles.painelAngulo, 'Visible', 'On');
+set(handles.painelEscala, 'Visible', 'Off');
+set(handles.painelThreshold, 'Visible', 'Off');
 set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.panellimitesmatlab, 'Visible', 'Off');
+set(handles.mascaramodeaveragemedian, 'Visible', 'Off');
+set(handles.paineltranslacao, 'Visible', 'Off');
+set(handles.text9, 'Visible', 'Off');
+set(handles.axes3, 'Visible', 'Off');
+set(handles.painelIntensidade, 'Visible', 'Off');
+
+set(handles.painelAngulo, 'Visible', 'On');
+
 handles.imagemAnterior=handles.imagemAtual;
 
 handles.anguloInserido=0;
@@ -447,7 +549,7 @@ function editLargura_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
+guidata(hObject, handles);
 
 
 function editAltura_Callback(hObject, eventdata, handles)
@@ -470,7 +572,7 @@ function editAltura_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
+guidata(hObject, handles);
 
 
 
@@ -491,13 +593,30 @@ function equalizacaoHisto_Callback(hObject, eventdata, handles)
 % hObject    handle to equalizacaoHisto (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+set(handles.painelEscala, 'Visible', 'Off');
+set(handles.painelAngulo, 'Visible', 'Off');
+set(handles.painelThreshold, 'Visible', 'Off');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.panellimitesmatlab, 'Visible', 'Off');
+set(handles.mascaramodeaveragemedian, 'Visible', 'Off');
+set(handles.paineltranslacao, 'Visible', 'Off');
+set(handles.painelIntensidade, 'Visible', 'Off');
+
 if(ndims(handles.imagemAtual)==2)
+    set(handles.text9, 'Visible', 'On');
+    set(handles.axes3, 'Visible', 'On');
+    
         handles.imagemAnterior = handles.imagemAtual;
+        imhist(handles.imagemAtual);
+        axes(handles.axes3);
+        
         HIST=adapthisteq(handles.imagemAtual);
         axes(handles.axes2);
+        
         imhist(HIST);
         imshow(HIST, 'Parent', handles.axes1);
-    elseif(ndims(handles.imagemAtual)==3)
+        
+    else
          msgbox('Não é possivel efetuar esta acção pois a iamgem não se encontra em Grayscale', 'Error','error');
 end
 guidata(hObject, handles);
@@ -509,21 +628,17 @@ function limites_Callback(hObject, eventdata, handles)
 % hObject    handle to limites (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+set(handles.painelEscala, 'Visible', 'Off');
+set(handles.painelAngulo, 'Visible', 'Off');
+set(handles.painelThreshold, 'Visible', 'Off');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.mascaramodeaveragemedian, 'Visible', 'Off');
+set(handles.paineltranslacao, 'Visible', 'Off');
+set(handles.text9, 'Visible', 'Off');
+set(handles.axes3, 'Visible', 'Off');
+set(handles.painelIntensidade, 'Visible', 'Off');
 
-
-% --------------------------------------------------------------------
-function limitefuncaomatlab_Callback(hObject, eventdata, handles)
-% hObject    handle to limitefuncaomatlab (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 set(handles.panellimitesmatlab, 'Visible', 'On');
-
-% --------------------------------------------------------------------
-function limitefuncaoalunos_Callback(hObject, eventdata, handles)
-% hObject    handle to limitefuncaoalunos (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
 
 % --- Executes on button press in aplicarfuncaoMatlab.
 function aplicarfuncaoMatlab_Callback(hObject, eventdata, handles)
@@ -566,3 +681,485 @@ handles.Z = imadd(handles.FinalIm,handles.imagemOriginal);
 imshow(handles.Z/1.75, 'Parent', handles.axes1);
 
 guidata(hObject, handles);
+
+
+% --------------------------------------------------------------------
+function ajusteintensidadecor_Callback(hObject, eventdata, handles)
+% hObject    handle to ajusteintensidadecor (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function funcoesmatlabcor_Callback(hObject, eventdata, handles)
+% hObject    handle to funcoesmatlabcor (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+set(handles.painelEscala, 'Visible', 'Off');
+set(handles.painelAngulo, 'Visible', 'Off');
+set(handles.painelThreshold, 'Visible', 'Off');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.panellimitesmatlab, 'Visible', 'Off');
+set(handles.paineltranslacao, 'Visible', 'Off');
+set(handles.text9, 'Visible', 'Off');
+set(handles.axes3, 'Visible', 'Off');
+set(handles.painelIntensidade, 'Visible', 'Off');
+
+set(handles.mascaramodeaveragemedian, 'Visible', 'On');
+
+handles.imagemAnterior = handles.imagemAtual;
+guidata(hObject, handles);
+
+% --------------------------------------------------------------------
+function funcoesalunoscor_Callback(hObject, eventdata, handles)
+% hObject    handle to funcoesalunoscor (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% --------------------------------------------------------------------
+% % % % % % % % % % % % % % % % % % % function alunosmoda_Callback(hObject, eventdata, handles)
+% % % % % % % % % % % % % % % % % % % hObject    handle to alunosmoda (see GCBO)
+% % % % % % % % % % % % % % % % % % % eventdata  reserved - to be defined in a future version of MATLAB
+% % % % % % % % % % % % % % % % % % % handles    structure with handles and user data (see GUIDATA)
+% % % % % % % % % % % % % % % % % % % set(handles.mascaramodeaveragemedian, 'Visible', 'On');
+% % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % if(ndims(handles.imagemAtual)==2)
+% % % % % % % % % % % % % % % % % % %     
+% % % % % % % % % % % % % % % % % % % imgmode = colfilt(handles.imagemAtual, [handles.n handles.m], 'sliding', @mode); %imagem, vizinhos,  Reorganiza cada vizinhança utiliza a funçao fun, 
+% % % % % % % % % % % % % % % % % % %     @mode cada pixel de saída para o valor da moda vizinhança 3 x 3 ??do pixel de entrada
+% % % % % % % % % % % % % % % % % % %     imshow(handles.imgmode, 'Parent', handles.axes1); 
+% % % % % % % % % % % % % % % % % % % else
+% % % % % % % % % % % % % % % % % % %         msgbox('A imagem tem de estar em grayscale', 'Error','error');
+% % % % % % % % % % % % % % % % % % % end
+% % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % guidata(hObject, handles);
+% % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % --------------------------------------------------------------------
+% % % % % % % % % % % % % % % % % % % function alunosmediana_Callback(hObject, eventdata, handles)
+% % % % % % % % % % % % % % % % % % % hObject    handle to alunosmediana (see GCBO)
+% % % % % % % % % % % % % % % % % % % eventdata  reserved - to be defined in a future version of MATLAB
+% % % % % % % % % % % % % % % % % % % handles    structure with handles and user data (see GUIDATA)
+% % % % % % % % % % % % % % % % % % % set(handles.mascaramodeaveragemedian, 'Visible', 'On');
+% % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % handles.imagemAnterior = handles.imagemAtual;
+% % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % if(ndims(handles.imagemAtual)==2)
+% % % % % % % % % % % % % % % % % % %     if isempty(handles.n) && isempty(handles.m)
+% % % % % % % % % % % % % % % % % % %         else
+% % % % % % % % % % % % % % % % % % %     handles.Kmedian = medfilt2(handles.imagemAtual);
+% % % % % % % % % % % % % % % % % % %     imshow(handles.Kmedian, 'Parent', handles.axes1);
+% % % % % % % % % % % % % % % % % % %     end
+% % % % % % % % % % % % % % % % % % %     else
+% % % % % % % % % % % % % % % % % % %          msgbox('A imagem tem de estar em grayscale', 'Error','error');
+% % % % % % % % % % % % % % % % % % % end
+% % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % guidata(hObject, handles);
+% % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % --------------------------------------------------------------------
+% % % % % % % % % % % % % % % % % % % function alunosmedia_Callback(hObject, eventdata, handles)
+% % % % % % % % % % % % % % % % % % % hObject    handle to alunosmedia (see GCBO)
+% % % % % % % % % % % % % % % % % % % eventdata  reserved - to be defined in a future version of MATLAB
+% % % % % % % % % % % % % % % % % % % handles    structure with handles and user data (see GUIDATA)
+% % % % % % % % % % % % % % % % % % % set(handles.mascaramodeaveragemedian, 'Visible', 'On');
+% % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % handles.imagemAnterior = handles.imagemAtual;
+% % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % if(ndims(handles.imagemAtual)==2)
+% % % % % % % % % % % % % % % % % % %      if isempty(handles.n) && isempty(handles.m)
+% % % % % % % % % % % % % % % % % % %      else
+% % % % % % % % % % % % % % % % % % %     handles.Kaverage = filter2(fspecial('average',[handles.num1,handles.num2]),handles.imagemAtual)/255; %media com vizinhos ? x ?
+% % % % % % % % % % % % % % % % % % %     imshow(handles.Kaverage, 'Parent', handles.axes1);
+% % % % % % % % % % % % % % % % % % %      end
+% % % % % % % % % % % % % % % % % % %     else
+% % % % % % % % % % % % % % % % % % %          msgbox('A imagem tem de estar em grayscale', 'Error','error');
+% % % % % % % % % % % % % % % % % % % end
+% % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % guidata(hObject, handles);
+
+% --- Executes on button press in calcularmascara.
+function calcularmascara_Callback(hObject, eventdata, handles)
+% hObject    handle to calcularmascara (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+set(handles.painelEscala, 'Visible', 'Off');
+set(handles.painelAngulo, 'Visible', 'Off');
+set(handles.painelThreshold, 'Visible', 'Off');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.panellimitesmatlab, 'Visible', 'Off');
+set(handles.mascaramodeaveragemedian, 'Visible', 'Off');
+set(handles.paineltranslacao, 'Visible', 'Off');
+set(handles.text9, 'Visible', 'Off');
+set(handles.axes3, 'Visible', 'Off');
+set(handles.painelIntensidade, 'Visible', 'Off');
+
+radio1 = get(handles.media,'Value');
+radio2 = get(handles.moda,'Value');
+radio3 = get(handles.mediana,'Value');
+
+    n = get(handles.primeiramascara, 'String');
+    m = get(handles.segundamascara, 'String');
+    if isempty(n) && isempty(m)
+        msgbox('Tem de inserir valores', 'Error','error');
+    end
+    num1=str2num(n);
+    num2=str2num(m);
+    
+    if(radio1==1)
+        Kaverage = filter2(fspecial('average',[num1,num2]),handles.imagemAtual)/255; %media com vizinhos ? x ?
+        imshow(Kaverage, 'Parent', handles.axes1);
+    elseif(radio2==1)
+        imgmode = colfilt(handles.imagemAtual, [num1,num2], 'sliding', @mode); %imagem, vizinhos,  Reorganiza cada vizinhança utiliza a funçao fun, 
+        %@mode cada pixel de saída para o valor da moda vizinhança 3 x 3 ??do pixel de entrada
+        imshow(imgmode, 'Parent', handles.axes1);
+    elseif(radio3==1)
+        Kmedian = medfilt2(handles.imagemAtual);
+        imshow(Kmedian, 'Parent', handles.axes1);
+    else
+         msgbox('Tem de selecionar uma das boxs', 'Error','error');
+    end
+guidata(hObject, handles);
+
+function matlab_moda_Callback(hObject, eventdata, handles)
+% hObject    handle to matlab_moda (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function matlab_mediana_Callback(hObject, eventdata, handles)
+% hObject    handle to matlab_mediana (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function matlab_media_Callback(hObject, eventdata, handles)
+% hObject    handle to matlab_media (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+% --------------------------------------------------------------------
+function ruido_Callback(hObject, eventdata, handles)
+% hObject    handle to ruido (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function ruidogaussian_Callback(hObject, eventdata, handles)
+% hObject    handle to ruidogaussian (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+set(handles.painelEscala, 'Visible', 'Off');
+set(handles.painelAngulo, 'Visible', 'Off');
+set(handles.painelThreshold, 'Visible', 'Off');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.panellimitesmatlab, 'Visible', 'Off');
+set(handles.mascaramodeaveragemedian, 'Visible', 'Off');
+set(handles.paineltranslacao, 'Visible', 'Off');
+set(handles.text9, 'Visible', 'Off');
+set(handles.axes3, 'Visible', 'Off');
+set(handles.painelIntensidade, 'Visible', 'Off');
+
+handles.imagemAnterior=handles.imagemAtual;
+
+handles.imagemAtual=imnoise(handles.imagemAtual, 'gaussian');
+imshow(handles.imagemAtual, 'Parent', handles.axes1);
+
+% Update handles structure
+guidata(hObject, handles);
+
+% --------------------------------------------------------------------
+function ruidopoisson_Callback(hObject, eventdata, handles)
+% hObject    handle to ruidopoisson (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+set(handles.painelEscala, 'Visible', 'Off');
+set(handles.painelAngulo, 'Visible', 'Off');
+set(handles.painelThreshold, 'Visible', 'Off');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.panellimitesmatlab, 'Visible', 'Off');
+set(handles.mascaramodeaveragemedian, 'Visible', 'Off');
+set(handles.paineltranslacao, 'Visible', 'Off');
+set(handles.text9, 'Visible', 'Off');
+set(handles.axes3, 'Visible', 'Off');
+set(handles.painelIntensidade, 'Visible', 'Off');
+
+handles.imagemAnterior=handles.imagemAtual;
+
+handles.imagemAtual=imnoise(handles.imagemAtual, 'poisson');
+imshow(handles.imagemAtual, 'Parent', handles.axes1);
+% Update handles structure
+guidata(hObject, handles);
+
+% --------------------------------------------------------------------
+function ruidosaltandpepper_Callback(hObject, eventdata, handles)
+% hObject    handle to ruidosaltandpepper (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+set(handles.painelEscala, 'Visible', 'Off');
+set(handles.painelAngulo, 'Visible', 'Off');
+set(handles.painelThreshold, 'Visible', 'Off');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.panellimitesmatlab, 'Visible', 'Off');
+set(handles.mascaramodeaveragemedian, 'Visible', 'Off');
+set(handles.paineltranslacao, 'Visible', 'Off');
+set(handles.text9, 'Visible', 'Off');
+set(handles.axes3, 'Visible', 'Off');
+set(handles.painelIntensidade, 'Visible', 'Off');
+
+handles.imagemAnterior=handles.imagemAtual;
+
+handles.imagemAtual=imnoise(handles.imagemAtual, 'salt & pepper');
+imshow(handles.imagemAtual, 'Parent', handles.axes1);
+
+% Update handles structure
+guidata(hObject, handles);
+
+% --------------------------------------------------------------------
+function ruidospeckle_Callback(hObject, eventdata, handles)
+% hObject    handle to ruidospeckle (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+set(handles.painelEscala, 'Visible', 'Off');
+set(handles.painelAngulo, 'Visible', 'Off');
+set(handles.painelThreshold, 'Visible', 'Off');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.panellimitesmatlab, 'Visible', 'Off');
+set(handles.mascaramodeaveragemedian, 'Visible', 'Off');
+set(handles.paineltranslacao, 'Visible', 'Off');
+set(handles.text9, 'Visible', 'Off');
+set(handles.axes3, 'Visible', 'Off');
+set(handles.painelIntensidade, 'Visible', 'Off');
+
+handles.imagemAnterior=handles.imagemAtual;
+
+handles.imagemAtual=imnoise(handles.imagemAtual, 'speckle');
+imshow(handles.imagemAtual, 'Parent', handles.axes1);
+
+% Update handles structure
+guidata(hObject, handles);
+
+
+
+function primeiramascara_Callback(hObject, eventdata, handles)
+% hObject    handle to primeiramascara (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of primeiramascara as text
+%        str2double(get(hObject,'String')) returns contents of primeiramascara as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function primeiramascara_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to primeiramascara (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function segundamascara_Callback(hObject, eventdata, handles)
+% hObject    handle to segundamascara (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of segundamascara as text
+%        str2double(get(hObject,'String')) returns contents of segundamascara as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function segundamascara_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to segundamascara (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --------------------------------------------------------------------
+function media_alunos_Callback(hObject, eventdata, handles)
+% hObject    handle to media_alunos (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+set(handles.painelEscala, 'Visible', 'Off');
+set(handles.painelAngulo, 'Visible', 'Off');
+set(handles.painelThreshold, 'Visible', 'Off');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.panellimitesmatlab, 'Visible', 'Off');
+set(handles.mascaramodeaveragemedian, 'Visible', 'Off');
+set(handles.paineltranslacao, 'Visible', 'Off');
+set(handles.text9, 'Visible', 'Off');
+set(handles.axes3, 'Visible', 'Off');
+set(handles.painelIntensidade, 'Visible', 'Off');
+
+handles.imagemAnterior=handles.imagemAtual;
+media(handles.imagemAtual);
+guidata(hObject, handles);
+
+
+% --------------------------------------------------------------------
+function moda_alunos_Callback(hObject, eventdata, handles)
+% hObject    handle to moda_alunos (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+set(handles.painelEscala, 'Visible', 'Off');
+set(handles.painelAngulo, 'Visible', 'Off');
+set(handles.painelThreshold, 'Visible', 'Off');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.panellimitesmatlab, 'Visible', 'Off');
+set(handles.mascaramodeaveragemedian, 'Visible', 'Off');
+set(handles.paineltranslacao, 'Visible', 'Off');
+set(handles.text9, 'Visible', 'Off');
+set(handles.axes3, 'Visible', 'Off');
+set(handles.painelIntensidade, 'Visible', 'Off');
+
+handles.imagemAnterior=handles.imagemAtual;
+moda(handles.imagemAtual);
+guidata(hObject, handles);
+
+% --------------------------------------------------------------------
+function mediana_alunos_Callback(hObject, eventdata, handles)
+% hObject    handle to mediana_alunos (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+set(handles.painelEscala, 'Visible', 'Off');
+set(handles.painelAngulo, 'Visible', 'Off');
+set(handles.painelThreshold, 'Visible', 'Off');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.panellimitesmatlab, 'Visible', 'Off');
+set(handles.mascaramodeaveragemedian, 'Visible', 'Off');
+set(handles.paineltranslacao, 'Visible', 'Off');
+set(handles.text9, 'Visible', 'Off');
+set(handles.axes3, 'Visible', 'Off');
+set(handles.painelIntensidade, 'Visible', 'Off');
+
+handles.imagemAnterior=handles.imagemAtual;
+mediana(handles.imagemAtual);
+guidata(hObject, handles);
+
+
+% --- Executes on button press in cimatranslacao.
+function cimatranslacao_Callback(hObject, eventdata, handles)
+% hObject    handle to cimatranslacao (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+handles.imagemAnterior=handles.imagemAtual;
+
+handles.translacaoX=handles.translacaoX-5;
+handles.se = translate(strel(1),[handles.translacaoX handles.translacaoY]);
+handles.late = imdilate(handles.imagemAtual, handles.se);
+imshow(handles.late, 'Parent', handles.axes1);
+
+% Update handles structure
+guidata(hObject, handles);
+
+
+% --- Executes on button press in baixotranslacao.
+function baixotranslacao_Callback(hObject, eventdata, handles)
+% hObject    handle to baixotranslacao (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+handles.imagemAnterior=handles.imagemAtual;
+
+handles.translacaoX=handles.translacaoX+5;
+handles.se = translate(strel(1),[handles.translacaoX handles.translacaoY]);
+handles.late = imdilate(handles.imagemAtual, handles.se);
+imshow(handles.late, 'Parent', handles.axes1); 
+
+% Update handles structure
+guidata(hObject, handles);
+
+% --- Executes on button press in direitatranslacao.
+function direitatranslacao_Callback(hObject, eventdata, handles)
+% hObject    handle to direitatranslacao (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+handles.imagemAnterior=handles.imagemAtual;
+
+handles.translacaoY=handles.translacaoY+5;
+handles.se = translate(strel(1),[handles.translacaoX handles.translacaoY]);
+handles.late = imdilate(handles.imagemAtual, handles.se);
+imshow(handles.late, 'Parent', handles.axes1);
+
+handles.late=handles.imagemAtual;
+
+% Update handles structure
+guidata(hObject, handles);
+
+% --- Executes on button press in esquerdatranslacao.
+function esquerdatranslacao_Callback(hObject, eventdata, handles)
+% hObject    handle to esquerdatranslacao (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+handles.imagemAnterior=handles.imagemAtual;
+
+handles.translacaoY=handles.translacaoY-5;
+handles.se = translate(strel(1),[handles.translacaoX handles.translacaoY]);
+handles.late = imdilate(handles.imagemAtual, handles.se);
+imshow(handles.late, 'Parent', handles.axes1); 
+
+% Update handles structure
+guidata(hObject, handles);
+
+
+% --------------------------------------------------------------------
+function contapixeis_Callback(hObject, eventdata, handles)
+% hObject    handle to contapixeis (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+set(handles.painelEscala, 'Visible', 'Off');
+set(handles.painelAngulo, 'Visible', 'Off');
+set(handles.painelThreshold, 'Visible', 'Off');
+set(handles.painelIntensidadeCor, 'Visible', 'Off');
+set(handles.panellimitesmatlab, 'Visible', 'Off');
+set(handles.mascaramodeaveragemedian, 'Visible', 'Off');
+set(handles.paineltranslacao, 'Visible', 'Off');
+set(handles.text9, 'Visible', 'Off');
+set(handles.axes3, 'Visible', 'Off');
+set(handles.painelIntensidade, 'Visible', 'Off');
+
+handles.imagemAnterior=handles.imagemAtual;
+contapixeis(handles.imagemAtual,0);
+
+
+% --- Executes on slider movement.
+function sliderIntensidade_Callback(hObject, eventdata, handles)
+% hObject    handle to sliderIntensidade (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'Value') returns position of slider
+%        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
+handles.imagemAnterior=handles.imagemAtual;
+
+valorSlider=get(handles.sliderIntensidade,'Value');
+assignin('base','valorSlider', valorSlider);
+
+handles.imagemLumi=handles.imagemAtual*valorSlider*2;
+imshow(handles.imagemLumi, 'Parent', handles.axes1);
+
+% Update handles structure
+guidata(hObject, handles);
+
+% --- Executes during object creation, after setting all properties.
+function sliderIntensidade_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to sliderIntensidade (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: slider controls usually have a light gray background.
+if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor',[.9 .9 .9]);
+end
